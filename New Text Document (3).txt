@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Tạo tên thư mục output có timestamp
+timestamp=$(date +%Y%m%d_%H%M%S)
+output_path="/user/hadoop/output_logs_$timestamp"
+
+echo "Output path sẽ là: $output_path"
+
+# Chạy Hadoop Streaming
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-3.2.2.jar \
+  -file mapper.py -mapper mapper.py \
+  -file reducer.py -reducer reducer.py \
+  -input /user/hadoop/baitaplon \
+  -output $output_path
+
+echo "Đã hoàn tất! Dữ liệu ghi tại: $output_path"
