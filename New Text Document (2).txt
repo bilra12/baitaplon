@@ -1,0 +1,6 @@
+hadoop jar $HADOOP_HOME/share/hadoop/tools/lib/hadoop-streaming-*.jar \
+  -files mapper.py,reducer.py \
+  -mapper mapper.py \
+  -reducer reducer.py \
+  -input /user/hdoop/logs/Apache_2k.log.txt \
+  -output /user/hdoop/output_logs
